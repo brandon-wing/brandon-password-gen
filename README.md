@@ -1,2 +1,1 @@
-# brandon-password-gen
-password generator
+# Password Generator Starter Code
