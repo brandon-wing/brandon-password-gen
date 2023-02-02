@@ -23,21 +23,16 @@ function generatePassword(){
 
   //We have to make sure the user submits a valid answer for password length, and then validates the answer.
   
-    if (possibleLength < 8) {
-      prompt("That isn't a valid amount! Please pick between 8 and 128.")
-    }
-
-    else if (possibleLength > 128) {
-      prompt("That isn't a valid amount! Please pick between 8 and 128.")
-    }
-  
-    else if (possibleLength > 7 || possibleLength < 129) {
+    if (possibleLength < 8 || possibleLength > 128 || isNaN(parseInt(possibleLength)))
+      alert("That isn't a valid amount! Please pick between 8 and 128.")
+    
+    else{
       alert("Your password will contain " + possibleLength + " characters.")
-    }
+    
     //Now that we have a valid length of the password, we determine the results of the other criteria and validate them to the user.
   //when the "OK" option is selected in the confirm option, it returns a boolean value of true. When "cancel" is selected, it is false.
   
-  let upperChoice = confirm("Would you like the password to contain uppercase characters?")
+  let upperChoice = confirm("Would you like the password pool to contain uppercase characters?")
   
   if (upperChoice===true) {
     alert("Uppercase characters confirmed.");
@@ -46,7 +41,7 @@ function generatePassword(){
     else if(upperChoice===false) {alert("No uppercase characters will be used!")
   }
   
-  let lowerChoice = confirm("Would you like the password to contain lowercase characters?")
+  let lowerChoice = confirm("Would you like the password pool to contain lowercase characters?")
   
   if (lowerChoice===true) {
     alert("Lowercase characters confirmed.");
@@ -55,7 +50,7 @@ function generatePassword(){
   else if (lowerChoice===false) {
     alert("No lowercase characters will be used!")
   }
-  let numberChoice = confirm("Would you like the password to contain numbers?")
+  let numberChoice = confirm("Would you like the password pool to contain numbers?")
   
   if (numberChoice===true) {
     alert("Numbers confirmed.");
@@ -64,7 +59,7 @@ function generatePassword(){
   else if (numberChoice===false) {
     alert("No numbers will be used!")
   }
-  let specialChoice = confirm("Would you like the password to contain special characters?")
+  let specialChoice = confirm("Would you like the password pool to contain special characters?")
   if (specialChoice===true) {
     alert("Special characters confirmed.");
     possiblePass = possiblePass.concat(specialKeys);
@@ -77,11 +72,13 @@ function generatePassword(){
   for (var i = 0; i < possibleLength; i++) {
     actualPass += possiblePass[Math.floor(Math.random() * possibleLength)];
   }
-
+  //show the pool of possible password characters in the log to confirm that the prompts populate the array
+  console.log(possiblePass) 
   //we have to return!!!! cannot forget or else it will be undefined!!!
 
   return actualPass;
 
+}
 }
 
 
